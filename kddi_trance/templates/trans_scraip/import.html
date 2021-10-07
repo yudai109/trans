@@ -1,0 +1,55 @@
+{% extends "trans_scraip/base.html" %}
+
+{% load static %}
+
+{% block title %}アップロード{% endblock %}
+
+{% block content %}
+
+  {% comment %} <h3>交通費CSVのアップロード</h3>
+  <form action="{% url 'csvimport' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" class="dropify" data-default-file="ファイルを選択してください" name="csv">
+    <button type="submit" class="btn" name="button">アップロード</button>
+  </form> {% endcomment %}
+  <div class="mt-4 flex">
+    <div class="mr-4">
+      <a href="{% url 'csvexport' %}" class="bg-blue-600 rounded px-8 py-2 text-white">csv出力</a>
+    </div>
+    <div>
+      <a href="{% url 'deleteData_all' %}" class="bg-gray-600 rounded px-8 py-2 text-white">やり直す</a>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <table class="table ml-2">
+      <thead>
+        <tr>
+          <th class="border border-white bg-gray-800 text-white w-32">日付</th>
+          <th class="border border-white bg-gray-800 text-white w-60">店舗</th>
+          <th class="border border-white bg-gray-800 text-white w-44">氏名</th>
+          <th class="border border-white bg-gray-800 text-white w-44">出発駅</th>
+          <th class="border border-white bg-gray-800 text-white w-44">到着駅</th>
+          <th class="border border-white bg-gray-800 text-white w-44">最短/最安</th>
+          <th class="border border-white bg-gray-800 text-white w-44">特急</th>
+          <th class="border border-white bg-gray-800 text-white w-44">片道</th>
+          <th class="border border-white bg-gray-800 text-white w-44">往復</th>
+          <th class="border border-white bg-gray-800 text-white w-44">合計料金</th>
+          <th class="border border-white bg-gray-800 text-white w-44">経路詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in Data_list %}
+          <tr>
+            {% for item in data %}
+              <td class="border border-gray-400 bg-white text-gray-600 px-2 py-1 text-sm">
+                {{ item }}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}

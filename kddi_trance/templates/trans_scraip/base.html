@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'ja' }}">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+  <link href="{% static 'app/search/search.css' %}" rel="stylesheet">
+  {% block extrahead %}{% endblock %}
+</head>
+<body>
+
+  <nav class="text-white font-semibold bg-gray-800 py-4 pl-3" style="margin-bottom: 1rem;">
+    <a class="navbar-brand" href="/">交通費自動計算システム</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+  </nav>
+
+    <div class="mx-4 mt-6">
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+
+    {% comment %} <div class="mt-8">
+      <div class="mt-5 border border-gray-300 shadow-lg pb-4">
+        <div class="pl-3 py-3 bg-gray-800">
+          <h3 class="text-white font-semibold text-xl">1駅検索</h3>
+        </div>
+      </div>
+    </div> {% endcomment %}
+  </div>
+
+
+
+</body>
+</html>
